@@ -1,5 +1,5 @@
 <?php
-true;
+$hackfix=true;
 ?>
 <p style="color:green">dir system</p>
 Главная страница:
