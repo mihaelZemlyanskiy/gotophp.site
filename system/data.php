@@ -7,7 +7,7 @@ $site_settings=[
                 ],
     'description'=>'Описание сайта ',
     'keywords'=>[
-                    '_active'=>true,
+                    '_active'=>false,
                     'value'=>'Сайт',
                 ],
     'canonical'=>[
