@@ -1,3 +1,6 @@
+<?php
+true;
+?>
 <!DOCTYPE html>
 <html lang="ru">
 <head>
