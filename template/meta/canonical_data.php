@@ -1,5 +1,8 @@
 <?
 $canonical_data=[
-            '/catalog'=>'/catalog',
+            '/catalog'=>[
+                        '_active'=>false,
+                        'value'=>'http://site.com',
+                        ],
 ];
 ?>

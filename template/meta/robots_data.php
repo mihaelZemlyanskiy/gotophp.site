@@ -1,5 +1,5 @@
 <?
 $robots_data=[
-            '/catalog'=>'index, follow',
+            '/catalog'=>'index,follow',
 ];
 ?>

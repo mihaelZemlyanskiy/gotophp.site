@@ -14,7 +14,7 @@ $title_data=[
         '_postscr'=>false,
         '_postscr_id'=>'',
     ],
-    '/catalog/podcatalog'=>['Каталог'],
+    '/catalog/podcatalog'=>['Подкаталог'],
         
 ];
 ?>

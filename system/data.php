@@ -1,17 +1,21 @@
 <?php
- $site_settings=[
+$site_settings=[
     'title'=>[
                 'value'=>'Название сайта',
                 '_postscr'=>false, 
                 '_postscr_value'=>' - ООО ТЕСТ',
                 ],
-    
-    'description'=>'Название сайта',
+    'description'=>'Описание сайта ',
     'keywords'=>[
-                    '_activ'=>false,
+                    '_active'=>true,
                     'value'=>'Сайт',
                 ],
-                'og_image'=>'upload/image/image.jpg',
+    'canonical'=>[
+                    '_active'=>false,
+                    'value'=>'http://site.com',
+                ],
+    'robots'=>'',
+    'og_image'=>'upload/image/image.jpg',
     'h1'=>'Заголовок страницы',
     '_file_ext'=>false, //.hmtl, .php, / ...
     404=>[
@@ -20,7 +24,4 @@
     ],
     'load_content'=>'dir',//dir, file
 ];
-
-
-
 ?>

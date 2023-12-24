@@ -7,13 +7,13 @@
 //
 //
 $page_site=[
-    'catalog'=>['_activ'=>true,
+    'catalog'=>['_active'=>true,
                 'podcatalog'=>[
-                                '_activ'=>true,
+                                '_active'=>true,
                                 ],
                 ],
-    'faq'=>['_activ'=>true,],
-    'test'=>['_activ'=>false,],
+    'faq'=>['_active'=>true,],
+    'test'=>['_active'=>false,],
 ];
 
 

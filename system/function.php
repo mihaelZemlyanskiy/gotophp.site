@@ -43,7 +43,7 @@ function check_page($url){
             return false;
         }
         $arr=$arr[$url[$i]];
-        if(!$arr['_activ'] && !$url[$i+1]){
+        if(!$arr['_active'] && !$url[$i+1]){
             return false;
         }
     }
@@ -56,7 +56,6 @@ function not_found_page($page=false){
         include_once($_SERVER['DOCUMENT_ROOT'].'/404.php');
     }
 }
-
 function load_content($page){
     not_found_page($page);
     if($page){
@@ -78,7 +77,6 @@ function load_content($page){
         return false;
     }
 }
-
 /*****meta*****/
 function title_print(){
     if(!check_page(check_url())){
@@ -90,6 +88,18 @@ function title_print(){
             break;
         default:
             $title_print=$GLOBALS['title_data'][check_url()][0];
+    }
+    if($GLOBALS['site_settings']['title']['_postscr']){
+        if(check_url()=='/'){
+            return $GLOBALS['site_settings']['title']['value'].$GLOBALS['site_settings']['title']['_postscr_value'];
+        }
+        if($GLOBALS['title_data'][check_url()]['_postscr']){
+            if($GLOBALS['title_data'][check_url()]['_postscr_id']){
+                $title_print .=$GLOBALS['title_data'][check_url()]['_postscr_id'];
+            }else{
+                $title_print .=$GLOBALS['site_settings']['title']['_postscr_value'];
+            }
+        }
     }
     if($title_print){
         return  $title_print;
@@ -106,7 +116,6 @@ function h1_print(){
     }
     return $h1;
 }
-
 function meta($name){
     switch ($name) {
         case 'og':
@@ -114,14 +123,14 @@ function meta($name){
                 if($GLOBALS['site_settings']['og_image']){
                     return '<meta property="og:type" content="website">
                     <meta property="og:title" content="'.title_print().'">
-                    <meta property="og:description" content="'.meta('description').'">
+                    <meta property="og:description" content="'.$GLOBALS['site_settings']['description'].'">
                     <meta property="og:image" content="'.check_domen().'/'.$GLOBALS['site_settings']['og_image'].'">';
                 }
             }
             if($GLOBALS['og_data'][check_url()]){
                 return '<meta property="og:type" content="website">
                         <meta property="og:title" content="'.title_print().'">
-                        <meta property="og:description" content="'.meta('description').'">
+                        <meta property="og:description" content="'.$GLOBALS['description_data'][check_url()].'">
                         <meta property="og:image" content="'.check_domen().'/'.$GLOBALS['og_data'][check_url()].'">';
             }
             break;
@@ -135,17 +144,28 @@ function meta($name){
             }            
             break;
         case 'keywords':
-            if( $GLOBALS['site_settings']['keywords']['_activ']){
-                if( $GLOBALS['keywords_data'][check_url()]){
-                    return "<meta name='".$name."' content='".$GLOBALS['keywords_data'][check_url()]."' >";
-                }else{
+            if( $GLOBALS['site_settings']['keywords']['_active']){
+                if( $GLOBALS['keywords_data'][check_url()] && $GLOBALS['keywords_data'][check_url()]['_active']){
+                    return "<meta name='".$name."' content='".$GLOBALS['keywords_data'][check_url()]['value']."' >";
+                }elseif (($GLOBALS['keywords_data'][check_url()]['_active'] && $GLOBALS['keywords_data'][check_url()]['value']=='') || check_url()=='/') {
                     return "<meta name='".$name."' content='".$GLOBALS['site_settings']['keywords']['value']."' >";
                 }
-            }          
-        break;            
-    }
-    
+            }        
+        break; 
+        case 'canonical':
+            if(check_url()=='/' &&  $GLOBALS['site_settings']['canonical']['_active']){
+                return "<link rel='".$name."' href=".$GLOBALS['site_settings']['canonical']['value']." >";
+            }elseif ($GLOBALS['canonical_data'][check_url()]['_active']) {
+                return "<link rel='".$name."' href=".$GLOBALS['canonical_data'][check_url()]['value']." >";
+            }
+        break;
+        case 'robots':
+            if(check_url()=='/' && $GLOBALS['site_settings']['robots']){
+                return "<meta name='".$name."' content=".$GLOBALS['site_settings']['robots'].">";
+            }elseif($GLOBALS['robots_data'][check_url()]){
+                return "<meta name='".$name."' content=".$GLOBALS['robots_data'][check_url()].">";
+            }
+        break;
+    }   
 }
-
-
 ?>

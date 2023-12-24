@@ -1,8 +1,14 @@
 <?
 $keywords_data=[
     /*
-    'url'=>'name',
+    'url'=>[
+                'value'=>'Каталог',
+                '_active'=>true,
+            ],            
     */
-    '/catalog'=>'Каталог',
+    '/catalog'=>[
+                'value'=>'Каталог',
+                '_active'=>false,
+                ],
 ];
 ?>
